@@ -24,7 +24,7 @@ from Models import VICI_inverse_model
 from bilby_pe import run
 import plots
 from plots import prune_samples
-from plotsky import plot_sky
+#from plotsky import plot_sky
 
 import skopt
 from skopt import gp_minimize, forest_minimize
