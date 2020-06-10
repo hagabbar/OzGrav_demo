@@ -218,7 +218,7 @@ class make_plots:
 
 
         """
-        matplotlib.rc('text', usetex=True)
+        #matplotlib.rc('text', usetex=True)
         Npp = int(self.params['r']*self.params['r']) # number of test GW waveforms to use to calculate PP plot
         ndim_y = self.params['ndata']
         
@@ -332,7 +332,7 @@ class make_plots:
 
             confidence_pp[i-1,:] = np.sort(pp_bilby)
 
-        matplotlib.rc('text', usetex=True) 
+        #matplotlib.rc('text', usetex=True) 
         # Remove whitespace on x-axis in all plots
         axis.margins(x=0,y=0)
 
@@ -379,7 +379,7 @@ class make_plots:
     def plot_loss(self):
         """ Regenerate previously made loss plot
         """
-        matplotlib.rc('text', usetex=True)
+        #matplotlib.rc('text', usetex=True)
 
         # Load old plot data
         plotdata = np.loadtxt("inverse_model_dir_%s/loss_data.txt" % self.params['run_label'])
@@ -414,7 +414,7 @@ class make_plots:
         will rewrite that once I find a way to run condor on 
         Bilby sampler runs.
         """
-        matplotlib.rc('text', usetex=True)
+        #matplotlib.rc('text', usetex=True)
         def compute_kl(sampset_1,sampset_2,samplers,one_D=False):
             """
             Compute KL for one test case.

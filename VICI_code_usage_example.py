@@ -992,7 +992,7 @@ if args.test:
                     plot_density=False, plot_datapoints=True, 
                     max_n_ticks=3)
 
-        matplotlib.rc('text', usetex=True)                
+        #matplotlib.rc('text', usetex=True)                
         parnames = []
     
         # Get infered parameter latex labels for corner plot
