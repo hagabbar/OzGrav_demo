@@ -47,43 +47,6 @@ parser.add_argument("--test", default=False, help="test the network")
 parser.add_argument("--params_file", default=None, type=dict, help="dictionary containing parameters of run")
 args = parser.parse_args()
 
-# Source parameter values to use if chosen to be fixed
-fixed_vals = {'mass_1':50.0,
-        'mass_2':50.0,
-        'mc':None,
-        'geocent_time':0.0,
-        'phase':0.0,
-        'ra':1.375,
-        'dec':-1.2108,
-        'psi':0.0,
-        'theta_jn':0.0,
-        'luminosity_distance':2000.0,
-        'a_1':0.0,
-        'a_2':0.0,
-	'tilt_1':0.0,
-	'tilt_2':0.0,
-        'phi_12':0.0,
-        'phi_jl':0.0,
-        'det':['H1','L1','V1']}                              # feel free to edit this if more or less detectors wanted
-
-# Prior bounds on source parameters
-bounds = {'mass_1_min':35.0, 'mass_1_max':80.0,
-        'mass_2_min':35.0, 'mass_2_max':80.0,
-        'M_min':70.0, 'M_max':160.0,
-        'geocent_time_min':0.15,'geocent_time_max':0.35,
-        'phase_min':0.0, 'phase_max':2.0*np.pi,
-        'ra_min':0.0, 'ra_max':2.0*np.pi,
-        'dec_min':-0.5*np.pi, 'dec_max':0.5*np.pi,
-        'psi_min':0.0, 'psi_max':2.0*np.pi,
-        'theta_jn_min':0.0, 'theta_jn_max':np.pi,
-        'a_1_min':0.0, 'a_1_max':0.0,
-        'a_2_min':0.0, 'a_2_max':0.0,
-        'tilt_1_min':0.0, 'tilt_1_max':0.0,
-        'tilt_2_min':0.0, 'tilt_2_max':0.0,
-        'phi_12_min':0.0, 'phi_12_max':0.0,
-        'phi_jl_min':0.0, 'phi_jl_max':0.0,
-        'luminosity_distance_min':1000.0, 'luminosity_distance_max':3000.0}
-
 # define which gpu to use during training
 gpu_num = str(0)                                            # first GPU used by default
 os.environ["CUDA_VISIBLE_DEVICES"]=gpu_num
