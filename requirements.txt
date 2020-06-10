@@ -5,7 +5,6 @@ astroplan==0.5
 astropy==3.2.1
 astropy-healpix==0.4
 astroquery==0.3.10
-basemap @ git+https://github.com/matplotlib/basemap.git@246dd6c7c4c2f585935a022f01c54ae0b4c7f164
 beautifulsoup4==4.8.0
 bilby==0.5.5
 cachetools==4.0.0
