@@ -142,7 +142,7 @@ def get_params():
     pe_test_num = 256                   # total number of test samples available to use in directory
     tot_dataset_size = int(1e4)         # total number of training samples available to use
     tset_split = int(1e3)               # number of training samples in each training data file
-    save_interval = int(5e3)            # number of iterations to save model and plot validation results corner plots
+    save_interval = int(5e4)            # number of iterations to save model and plot validation results corner plots
     ref_geocent_time=1126259642.5       # reference gps time (not advised to change this)
     load_chunk_size = 1e4               # Number of training samples to load in at a time.
     samplers=['vitamin','dynesty'],     # Bayesian samplers to use when comparing ML results (vitamin is ML approach) dynesty,ptemcee,cpnest,emcee
