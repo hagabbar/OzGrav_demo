@@ -148,7 +148,7 @@ def get_params():
     samplers=['vitamin','dynesty'],     # Bayesian samplers to use when comparing ML results (vitamin is ML approach) dynesty,ptemcee,cpnest,emcee
 
     # Directory variables
-    plot_dir="/home/hunter.gabbard/public_html/CBC/ozgrav_demo/gw_results/%s" % run_label,  # output directory to save results plots
+    plot_dir="results/%s" % run_label,  # output directory to save results plots
     train_set_dir='training_sets_%ddet_%dpar_%dHz/tset_tot-%d_split-%d' % (len(fixed_vals['det']),len(rand_pars),ndata,tot_dataset_size,tset_split), #location of training set
     test_set_dir='test_sets/%s/four_parameter_case/test_waveforms' % bilby_results_label, # lovation of test set directory waveforms
     pe_dir='test_sets/%s/four_parameter_case/test' % bilby_results_label,                 # location of test set directory Bayesian PE samples
