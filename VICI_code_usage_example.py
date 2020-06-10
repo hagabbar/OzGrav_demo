@@ -57,7 +57,10 @@ config.gpu_options.allow_growth = True
 session = tf.compat.v1.Session(config=config)
 
 # Load parameters file
-params = dict(open(args.params_file, "r"))
+f = open(args.params_file,'r')
+data=f.read()
+f.close()
+params = eval(data)
 
 # Ranges over which hyperparameter optimization parameters are allowed to vary
 kernel_1 = Integer(low=3, high=12, name='kernel_1')
