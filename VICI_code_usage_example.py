@@ -44,7 +44,7 @@ parser.add_argument("--gen_train", default=False, help="generate the training da
 parser.add_argument("--gen_test", default=False, help="generate the testing data")
 parser.add_argument("--train", default=False, help="train the network")
 parser.add_argument("--test", default=False, help="test the network")
-parser.add_argument("--params_file", default=None, type=dict, help="dictionary containing parameters of run")
+parser.add_argument("--params_file", default=None, type=str, help="dictionary containing parameters of run")
 args = parser.parse_args()
 
 # define which gpu to use during training
@@ -57,7 +57,7 @@ config.gpu_options.allow_growth = True
 session = tf.compat.v1.Session(config=config)
 
 # Load parameters file
-params = args.params_file
+params = dict(open(args.params_file, "r"))
 
 # Ranges over which hyperparameter optimization parameters are allowed to vary
 kernel_1 = Integer(low=3, high=12, name='kernel_1')
