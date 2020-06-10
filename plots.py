@@ -291,7 +291,7 @@ class make_plots:
         # plot the pp plot
         for j in range(len(self.params['inf_pars'])):        
             if j == 0:
-                axis.plot(np.arange((self.params['r']**2)+2)/((self.params['r']**2)+1.0),np.sort(pp[:,j]),'-',color='red',linewidth=1,zorder=50,label=r'$\textrm{VItamin}$',alpha=0.5)
+                axis.plot(np.arange((self.params['r']**2)+2)/((self.params['r']**2)+1.0),np.sort(pp[:,j]),'-',color='red',linewidth=1,zorder=50,label=r'VItamin',alpha=0.5)
             else:
                 axis.plot(np.arange((self.params['r']**2)+2)/((self.params['r']**2)+1.0),np.sort(pp[:,j]),'-',color='red',linewidth=1,zorder=50,alpha=0.5)
 
@@ -326,7 +326,7 @@ class make_plots:
                 
                 # plot bilby sampler results
                 if j == 0:
-                    axis.plot(np.arange((self.params['r']**2)+2)/((self.params['r']**2)+1.0),np.sort(pp_bilby),'-',color=CB_color_cycle[i-1],linewidth=1,label=r'$\textrm{%s}$' % samplers[i],alpha=0.5)
+                    axis.plot(np.arange((self.params['r']**2)+2)/((self.params['r']**2)+1.0),np.sort(pp_bilby),'-',color=CB_color_cycle[i-1],linewidth=1,label=r'%s' % samplers[i],alpha=0.5)
                 else:
                     axis.plot(np.arange((self.params['r']**2)+2)/((self.params['r']**2)+1.0),np.sort(pp_bilby),'-',color=CB_color_cycle[i-1],linewidth=1,alpha=0.5)
 
@@ -361,8 +361,8 @@ class make_plots:
         axis.set_ylim([0,1])
         #axis.set_ylabel(r'$\textrm{Empirical Cumulative Distribution}$',fontsize=14)
         #axis.set_xlabel(r'$\textrm{Theoretical Cumulative Distribution}$',fontsize=14)
-        axis.set_ylabel(r'$\textrm{Fraction of events within the Credible Interval}$',fontsize=14)
-        axis.set_xlabel(r'$\textrm{Probability within the Credible Interval}$',fontsize=14)
+        axis.set_ylabel(r'Fraction of events within the Credible Interval',fontsize=14)
+        axis.set_xlabel(r'Probability within the Credible Interval',fontsize=14)
         axis.tick_params(axis="x", labelsize=14)
         axis.tick_params(axis="y", labelsize=14)
         #plt.axis('scaled')
@@ -387,15 +387,15 @@ class make_plots:
         # Make loss plot
         plt.figure()
         xvec = self.params['report_interval']*np.arange(np.array(plotdata).shape[0])
-        plt.semilogx(xvec,np.array(plotdata)[:,0],label=r'$\mathrm{Recon}$',color='blue',alpha=0.5)
-        plt.semilogx(xvec,np.array(plotdata)[:,1],label=r'$\mathrm{KL}$',color='orange',alpha=0.5)
-        plt.semilogx(xvec,np.array(plotdata)[:,2],label=r'$\mathrm{Total}$',color='green',alpha=0.5)
+        plt.semilogx(xvec,np.array(plotdata)[:,0],label=r'Recon',color='blue',alpha=0.5)
+        plt.semilogx(xvec,np.array(plotdata)[:,1],label=r'KL',color='orange',alpha=0.5)
+        plt.semilogx(xvec,np.array(plotdata)[:,2],label=r'Total',color='green',alpha=0.5)
         plt.semilogx(xvec,np.array(plotdata)[:,3],color='blue',linestyle='dotted')
         plt.semilogx(xvec,np.array(plotdata)[:,4],color='orange',linestyle='dotted')
         plt.semilogx(xvec,np.array(plotdata)[:,5],color='green',linestyle='dotted')
         plt.ylim([-25,15])
-        plt.xlabel(r'$\mathrm{Iteration}$')
-        plt.ylabel(r'$\mathrm{Cost}$')
+        plt.xlabel(r'Iteration')
+        plt.ylabel(r'Cost')
         plt.legend()
         plt.savefig('%s/latest_%s/cost_%s.png' % (self.params['plot_dir'],self.params['run_label'],self.params['run_label']),dpi=360)
         plt.ylim([np.min(np.array(plotdata)[-int(0.9*np.array(plotdata).shape[0]):,0]), np.max(np.array(plotdata)[-int(0.9*np.array(plotdata).shape[0]):,1])])
@@ -617,7 +617,7 @@ class make_plots:
                         print(np.sort(tot_kl)[-15:][::-1])
                         print(tot_kl.argsort()[:15][:])
                         print(np.sort(tot_kl)[:15][:])
-                        axis_kl[kl_idx_1,kl_idx_2].hist(tot_kl,log=True,bins=logbins,alpha=0.5,histtype='stepfilled',density=True,color=CB_color_cycle[print_cnt],label='$\mathrm{%s \ vs. \ %s}$' % (samplers[i],samplers[::-1][j]),zorder=2)
+                        axis_kl[kl_idx_1,kl_idx_2].hist(tot_kl,log=True,bins=logbins,alpha=0.5,histtype='stepfilled',density=True,color=CB_color_cycle[print_cnt],label='%s vs. %s' % (samplers[i],samplers[::-1][j]),zorder=2)
                         axis_kl[kl_idx_1,kl_idx_2].hist(tot_kl,log=True,bins=logbins,histtype='step',density=True,facecolor='None',ls='-',lw=2,edgecolor=CB_color_cycle[print_cnt],zorder=10)
                     # record non-colored hists
                     elif samplers[i] != 'vitamin' and samplers[::-1][j] != 'vitamin':
@@ -635,14 +635,14 @@ class make_plots:
                 tmp_idx-=1
 
             # Plot non-colored histograms
-            axis_kl[kl_idx_1,kl_idx_2].hist(np.array(tot_kl_grey).squeeze(),log=True,bins=logbins,alpha=0.8,histtype='stepfilled',density=True,color='grey',label=r'$\mathrm{%s \ vs. \ other \ samplers}$' % samplers[1:][k],zorder=1)
+            axis_kl[kl_idx_1,kl_idx_2].hist(np.array(tot_kl_grey).squeeze(),log=True,bins=logbins,alpha=0.8,histtype='stepfilled',density=True,color='grey',label=r'%s vs. other samplers' % samplers[1:][k],zorder=1)
             axis_kl[kl_idx_1,kl_idx_2].hist(np.array(tot_kl_grey).squeeze(),log=True,bins=logbins,histtype='step',density=True,facecolor='None',ls='-',lw=2,edgecolor='grey',zorder=1)
 
             # plot KL histograms
             if kl_idx_1 == 1:
-                axis_kl[kl_idx_1,kl_idx_2].set_xlabel(r'$\mathrm{KL-Statistic}$',fontsize=14)
+                axis_kl[kl_idx_1,kl_idx_2].set_xlabel(r'KL-Statistic',fontsize=14)
             if kl_idx_2 == 0:
-                axis_kl[kl_idx_1,kl_idx_2].set_ylabel(r'$p(\mathrm{KL})$',fontsize=14)
+                axis_kl[kl_idx_1,kl_idx_2].set_ylabel(r'p(KL)',fontsize=14)
             axis_kl[kl_idx_1,kl_idx_2].tick_params(axis="both", labelsize=12, direction='out')
             leg = axis_kl[kl_idx_1,kl_idx_2].legend(loc='upper right', fontsize=4) #'medium')
             for l in leg.legendHandles:

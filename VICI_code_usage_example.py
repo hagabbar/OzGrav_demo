@@ -1062,7 +1062,7 @@ if args.test:
                 ax2.plot(np.linspace(0,1,params['ndata']),y_data_test[i,:params['ndata'],0],color='darkblue')
         else:
             ax2.plot(np.linspace(0,1,params['ndata']),y_data_test[i,:params['ndata']],color='darkblue')
-        ax2.set_xlabel(r"$\textrm{time (seconds)}$",fontsize=16)
+        ax2.set_xlabel(r"time (seconds)",fontsize=16)
         ax2.yaxis.set_visible(False)
         ax2.tick_params(axis="x", labelsize=12)
         ax2.tick_params(axis="y", labelsize=12)
