@@ -465,9 +465,9 @@ def train(params, x_data, y_data, x_data_test, y_data_test, y_data_test_noisefre
                        show_titles=True, fig=figure)
 
 
-                #plt.savefig('%s/corner_plot_%s_%d-%d.png' % (params['plot_dir'],params['run_label'],i,j))
-                #plt.savefig('%s/latest_%s/corner_plot_%s_%d.png' % (params['plot_dir'],params['run_label'],params['run_label'],j))
-                #plt.close('all')
+                plt.savefig('%s/corner_plot_%s_%d-%d.png' % (params['plot_dir'],params['run_label'],i,j))
+                plt.savefig('%s/latest_%s/corner_plot_%s_%d.png' % (params['plot_dir'],params['run_label'],params['run_label'],j))
+                plt.close('all')
                 plt.show()
                 print('Made corner plot %d' % j)
     return            
