@@ -43,6 +43,7 @@ parser = argparse.ArgumentParser(description='A tutorial of argparse!')
 parser.add_argument("--gen_train", default=False, help="generate the training data")
 parser.add_argument("--gen_test", default=False, help="generate the testing data")
 parser.add_argument("--train", default=False, help="train the network")
+parser.add_argument("--resume_training", default=False, help="resume training of network")
 parser.add_argument("--test", default=False, help="test the network")
 parser.add_argument("--params_file", default=None, type=str, help="dictionary containing parameters of run")
 parser.add_argument("--params_file_bounds", default=None, type=str, help="dictionary containing source parameter bounds")
@@ -490,7 +491,12 @@ if args.gen_test:
 ####################################
 # Train neural network
 ####################################
-if args.train:
+if args.train or ags.resume_training:
+
+    # If resuming training, set KL ramp off
+    if args.resume_training:
+        params['resume_training'] = True
+        params['ramp'] = False
 
     # load the noisefree training data back in
     x_data_train, y_data_train, _, y_normscale, snrs_train = load_data(params['train_set_dir'],params['inf_pars'])
