@@ -491,7 +491,7 @@ if args.gen_test:
 ####################################
 # Train neural network
 ####################################
-if args.train or ags.resume_training:
+if args.train or args.resume_training:
 
     # If resuming training, set KL ramp off
     if args.resume_training:
