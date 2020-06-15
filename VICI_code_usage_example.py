@@ -829,7 +829,7 @@ if args.test:
         # Get infered parameter latex labels for corner plot
         for k_idx,k in enumerate(params['rand_pars']):
             if np.isin(k, params['inf_pars']):
-                parnames.append(params['corner_parnames'][k_idx])
+                parnames.append(params['cornercorner_parnames'][k_idx])
 
         # unnormalize the predictions from VICI (comment out if not wanted)
         color_cycle=['tab:blue','tab:green','tab:purple','tab:orange']
