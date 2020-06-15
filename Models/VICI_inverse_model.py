@@ -155,9 +155,9 @@ def train(params, x_data, y_data, x_data_test, y_data_test, y_data_test_noisefre
     n_hlayers_r1 = len(params['n_weights_r1'])
     n_hlayers_r2 = len(params['n_weights_r2'])
     n_hlayers_q = len(params['n_weights_q'])
-    n_conv_r1 = len(params['n_filters_r1'])
-    n_conv_r2 = len(params['n_filters_r2'])
-    n_conv_q = len(params['n_filters_q'])
+    n_conv_r1 = len(params['n_filters_r1']) if params['n_filters_r1'] != None else None
+    n_conv_r2 = len(params['n_filters_r2']) if params['n_filters_r2'] != None else None
+    n_conv_q = len(params['n_filters_q'])   if params['n_filters_q'] != None else None
     n_filters_r1 = params['n_filters_r1']
     n_filters_r2 = params['n_filters_r2']
     n_filters_q = params['n_filters_q']
@@ -492,9 +492,9 @@ def run(params, y_data_test, siz_x_data, y_normscale, load_dir):
     n_hlayers_r1 = len(params['n_weights_r1'])
     n_hlayers_r2 = len(params['n_weights_r2'])
     n_hlayers_q = len(params['n_weights_q'])
-    n_conv_r1 = len(params['n_filters_r1'])
-    n_conv_r2 = len(params['n_filters_r2'])
-    n_conv_q = len(params['n_filters_q'])
+    n_conv_r1 = len(params['n_filters_r1']) if params['n_filters_r1'] != None else None
+    n_conv_r2 = len(params['n_filters_r2']) if params['n_filters_r2'] != None else None
+    n_conv_q = len(params['n_filters_q'])   if params['n_filters_q'] != None else None
     n_filters_r1 = params['n_filters_r1']
     n_filters_r2 = params['n_filters_r2']
     n_filters_q = params['n_filters_q']
