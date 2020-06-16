@@ -66,7 +66,7 @@ class make_plots:
     Class for making results plots
     """
     
-    def __init__(self,params,samples,rev_x,pos_test):
+    def __init__(self,params,samples,rev_x,pos_test,model_loc):
         """
         Add variables here later if need be
         """
@@ -74,6 +74,7 @@ class make_plots:
         self.samples = samples
         self.rev_x = rev_x
         self.pos_test = pos_test
+        self.model_loc = model_loc
 
         def load_test_set(model,sig_test,par_test,y_normscale,bounds,sampler='dynesty1',vitamin_pred_made=None):
             """
@@ -91,7 +92,7 @@ class make_plots:
                     # The trained inverse model weights can then be used to infer a probability density of solutions given new measurements
                     VI_pred, _, _, dt,_  = model.run(params, np.expand_dims(sig_test[i],axis=0), np.shape(par_test)[1],
                                                              y_normscale,
-                                                             "inverse_model_dir_%s/inverse_model.ckpt" % params['run_label'])
+                                                             self.model_loc)
                     VI_pred_all.append(VI_pred)
 
                     print('Generated vitamin preds %d/%d' % (int(i),int(params['r']*params['r'])))
@@ -248,7 +249,7 @@ class make_plots:
 #given new measurements
                 x, _, _, dt,_  = model.run(self.params, y, np.shape(par_test)[1],
                                                      normscales,
-                                                     "inverse_model_dir_%s/inverse_model.ckpt" % self.params['run_label'])
+                                                     self.model_loc)
 
                 # Apply mask
                 x = x.T

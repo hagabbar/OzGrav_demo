@@ -435,11 +435,11 @@ def train(params, x_data, y_data, x_data_test, y_data_test, y_data_test_noisefre
                 if params['n_filters_r1'] != None:
                     XS, loc, scale, dt, _  = VICI_inverse_model.run(params, y_data_test[j].reshape([1,y_data_test.shape[1],y_data_test.shape[2]]), np.shape(x_data_test)[1],
                                                  y_normscale, 
-                                                 "inverse_model_dir_%s/inverse_model.ckpt" % params['run_label'])
+                                                 save_dir)
                 else:
                     XS, loc, scale, dt, _  = VICI_inverse_model.run(params, y_data_test[j].reshape([1,-1]), np.shape(x_data_test)[1],
                                                  y_normscale, 
-                                                 "inverse_model_dir_%s/inverse_model.ckpt" % params['run_label'])
+                                                 save_dir)
                 print('Runtime to generate {} samples = {} sec'.format(params['n_samples'],dt))            
                
                 # Get corner parnames to use in plotting labels

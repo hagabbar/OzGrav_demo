@@ -48,6 +48,7 @@ parser.add_argument("--test", default=False, help="test the network")
 parser.add_argument("--params_file", default=None, type=str, help="dictionary containing parameters of run")
 parser.add_argument("--params_file_bounds", default=None, type=str, help="dictionary containing source parameter bounds")
 parser.add_argument("--params_file_fixed_vals", default=None, type=str, help="dictionary containing source parameter values when fixed")
+parser.add_argument("--pretrained_loc", default=None, type=str, help="location of a pretrained network")
 args = parser.parse_args()
 
 # define which gpu to use during training
@@ -639,10 +640,17 @@ if args.train or args.resume_training:
 
     # otherwise, train model from user-defined hyperparameter setup
     else:
+    
+        # load pretrained network if wanted
+        if args.pretrained_loc != None:
+            model_loc = args.pretrained_loc
+        else:
+            model_loc = "inverse_model_dir_%s/inverse_model.ckpt" % params['run_label']
+
         VICI_inverse_model.train(params, x_data_train, y_data_train,
                                  x_data_test, y_data_test, y_data_test_noisefree,
                                  y_normscale,
-                                 "inverse_model_dir_%s/inverse_model.ckpt" % params['run_label'],
+                                 model_loc,
                                  x_data_test, bounds, fixed_vals,
                                  XS_all,snrs_test) 
 
@@ -793,6 +801,12 @@ if args.test:
         y_data_test = np.array(y_data_test_new)
         del y_data_test_new
 
+    # load pretrained network if wanted
+    if args.pretrained_loc != None:
+        model_loc = args.pretrained_loc
+    else:
+        model_loc = "inverse_model_dir_%s/inverse_model.ckpt" % params['run_label']
+
     # Iterate over total number of testing samples
     for i in range(params['r']*params['r']):
 
@@ -804,11 +818,11 @@ if args.test:
         if params['n_filters_r1'] != None: # for convolutional approach
              VI_pred, _, _, dt,_  = VICI_inverse_model.run(params, np.expand_dims(y_data_test[i],axis=0), np.shape(x_data_test)[1],
                                                          y_normscale,
-                                                         "inverse_model_dir_%s/inverse_model.ckpt" % params['run_label'])
+                                                         model_loc)
         else:                                                          # for fully-connected approach
             VI_pred, _, _, dt,_  = VICI_inverse_model.run(params, y_data_test[i].reshape([1,-1]), np.shape(x_data_test)[1],
                                                          y_normscale,
-                                                         "inverse_model_dir_%s/inverse_model.ckpt" % params['run_label'])
+                                                         model_loc)
 
 
         # Make corner corner plots
@@ -915,7 +929,7 @@ if args.test:
     VI_pred_all = np.array(VI_pred_all)
 
     # Define pp and KL plotting class
-    plotter = plots.make_plots(params,XS_all,VI_pred_all,x_data_test)
+    plotter = plots.make_plots(params,XS_all,VI_pred_all,x_data_test,model_loc)
 
     if params['make_kl_plot'] == True:    
         # Make KL plots
